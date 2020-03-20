@@ -8,8 +8,6 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/fnlbhq/fred/series"
-
 	"github.com/fnlbhq/fred/argument"
 )
 
@@ -55,7 +53,6 @@ func (q *Query) String() string {
 }
 
 func (q *Query) Get() (*Result, error) {
-	fmt.Println(q.URL.String())
 	resp, err := http.Get(q.URL.String())
 
 	if err != nil {
@@ -79,29 +76,6 @@ func (q *Query) Get() (*Result, error) {
 	}
 
 	return &result, nil
-}
-
-func GetSeriesInRealtimeRange(seriesId, start, end string) (*Result, error) {
-	q, err := NewQuery(series.Observations)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return q.With(argument.SeriesId, seriesId).
-		With(argument.RealTimeStart, start).
-		With(argument.RealTimeEnd, end).
-		Get()
-}
-
-func SeriesObservations(seriesId string) (*Result, error) {
-	q, err := NewQuery(series.Observations)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return q.With(argument.SeriesId, seriesId).Get()
 }
 
 type Result struct {
@@ -180,11 +154,6 @@ type Category struct {
 	ID       int
 	Name     string
 	ParentID int
-}
-
-func Updates() (*Result, error) {
-	q, _ := NewQuery(series.Updates)
-	return q.Get()
 }
 
 // Common series
