@@ -55,6 +55,7 @@ func (q *Query) String() string {
 }
 
 func (q *Query) Get() (*Result, error) {
+	fmt.Println(q.URL.String())
 	resp, err := http.Get(q.URL.String())
 
 	if err != nil {
@@ -80,7 +81,7 @@ func (q *Query) Get() (*Result, error) {
 	return &result, nil
 }
 
-func SeriesInRealtimeRange(seriesId, start, end string) (*Result, error) {
+func GetSeriesInRealtimeRange(seriesId, start, end string) (*Result, error) {
 	q, err := NewQuery(series.Observations)
 
 	if err != nil {
@@ -93,7 +94,7 @@ func SeriesInRealtimeRange(seriesId, start, end string) (*Result, error) {
 		Get()
 }
 
-func Series(seriesId string) (*Result, error) {
+func SeriesObservations(seriesId string) (*Result, error) {
 	q, err := NewQuery(series.Observations)
 
 	if err != nil {
@@ -116,6 +117,7 @@ type Result struct {
 	Count            int
 	Offset           int
 	Limit            int
+	Series           []Series      `json:"seriess,omitempty"`
 	Observations     []Observation `json:",omitempty"`
 	Releases         []Release     `json:",omitempty"`
 	Categories       []Category    `json:",omitempty"`
@@ -141,6 +143,23 @@ func (r *Result) PrettyJSON() (string, error) {
 	return string(jsonData), nil
 }
 
+type Series struct {
+	ID                      string `json:"id"`
+	RealtimeStart           string `json:"realtime_start"`
+	RealtimeEnd             string `json:"realtime_end"`
+	Title                   string
+	ObservationStart        string `json:"observation_start"`
+	ObservationEnd          string `json:"observation_end"`
+	Frequency               string
+	FrequencyShort          string `json:"frequency_short"`
+	Units                   string
+	UnitsShort              string `json:"units_short"`
+	SeasonalAdjustment      string `json:"seasonal_adjustment"`
+	SeasonalAdjustmentShort string `json:"seasonal_adjustment_short"`
+	LastUpdated             string `json:"last_updated"`
+	Popularity              int
+}
+
 type Observation struct {
 	Date          string
 	RealtimeStart string `json:"realtime_start"`
@@ -164,7 +183,8 @@ type Category struct {
 }
 
 func Updates() (*Result, error) {
-	return Series(series.Updates)
+	q, _ := NewQuery(series.Updates)
+	return q.Get()
 }
 
 // Common series
