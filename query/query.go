@@ -8,6 +8,8 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/fnlbhq/fred/fred"
+
 	"github.com/fnlbhq/fred/query/argument"
 )
 
@@ -167,7 +169,7 @@ func (q *Query) String() string {
 	return q.URL.String()
 }
 
-func (q *Query) Get() (*Result, error) {
+func (q *Query) Get() (*fred.Result, error) {
 	resp, err := http.Get(q.URL.String())
 
 	if err != nil {
@@ -182,7 +184,7 @@ func (q *Query) Get() (*Result, error) {
 		return nil, err
 	}
 
-	var result Result
+	var result fred.Result
 
 	err = json.Unmarshal(body, &result)
 
@@ -192,103 +194,3 @@ func (q *Query) Get() (*Result, error) {
 
 	return &result, nil
 }
-
-type Result struct {
-	Start            string `json:"realtime_start"`
-	End              string `json:"realtime_end"`
-	ObservationStart string `json:"observation_start"`
-	ObservationEnd   string `json:"observation_end"`
-	Units            string
-	OutputType       int    `json:"output_type"`
-	FileType         string `json:"file_type"`
-	OrderBy          string `json:"order_by"`
-	SortOrder        string `json:"sort_order"`
-	Count            int
-	Offset           int
-	Limit            int
-	Series           []Series      `json:"seriess,omitempty"`
-	Observations     []Observation `json:",omitempty"`
-	Releases         []Release     `json:",omitempty"`
-	Categories       []Category    `json:",omitempty"`
-}
-
-func (r *Result) JSON() (string, error) {
-	jsonData, err := json.Marshal(r)
-
-	if err != nil {
-		return "", err
-	}
-
-	return string(jsonData), nil
-}
-
-func (r *Result) PrettyJSON() (string, error) {
-	jsonData, err := json.MarshalIndent(r, "", " ")
-
-	if err != nil {
-		return "", err
-	}
-
-	return string(jsonData), nil
-}
-
-type Series struct {
-	ID                      string `json:"id"`
-	RealtimeStart           string `json:"realtime_start"`
-	RealtimeEnd             string `json:"realtime_end"`
-	Title                   string
-	ObservationStart        string `json:"observation_start"`
-	ObservationEnd          string `json:"observation_end"`
-	Frequency               string
-	FrequencyShort          string `json:"frequency_short"`
-	Units                   string
-	UnitsShort              string `json:"units_short"`
-	SeasonalAdjustment      string `json:"seasonal_adjustment"`
-	SeasonalAdjustmentShort string `json:"seasonal_adjustment_short"`
-	LastUpdated             string `json:"last_updated"`
-	Popularity              int
-}
-
-type Observation struct {
-	Date          string
-	RealtimeStart string `json:"realtime_start"`
-	RealtimeEnd   string `json:"realtime_end"`
-	Value         string
-}
-
-type Release struct {
-	ID            int
-	RealtimeStart string `json:"realtime_start"`
-	RealtimeEnd   string `json:"realtime_end"`
-	Name          string
-	PressRelease  string `json:"press_release"`
-	Link          string
-}
-
-type Category struct {
-	ID       int
-	Name     string
-	ParentID int
-}
-
-// Common series
-const (
-	CDRatesNonJumbo                = "MMNRNJ"          // FDIC via FRED
-	CDRatesJumbo                   = "MMNRJD"          // FDIC via FRED
-	RealGDP                        = "A191RL1Q225SBEA" // BEA via FRED
-	ConsumerPriceIndex             = "CPIAUCSL"        // Board of Governors of the Federal Reserve System
-	CreditCardInterestRate         = "TERMCBCCALLNS"   // Board of Governors of the Federal Reserve System
-	FederalFundsRate               = "FEDFUNDS"        // Board of Governors of the Federal Reserve System
-	InitialClaimsFourWeekMovingAvg = "IC4WSA"          // US Employment & Training Admin via FRED
-	IndustrialProductionIndex      = "INDPRO"          // Board of Governors of the Federal Reserve System
-	InstitutionalMoneyFunds        = "WIMFSL"
-	MortgageRates30USFixedAverage  = "MORTGAGE30US"  // Freddie Mac via Board of Governors of the Federal Reserve System
-	MortgageRates15USFixedAverage  = "MORTGAGE15US"  // Freddie Mac via Board of Governors of the Federal Reserve System
-	MortgageRates5USFixedAverage   = "MORTGAGE5US"   // Freddie Mac via Board of Governors of the Federal Reserve System
-	TotalHousingStarts             = "HOUST"         // U.S. Census Bureau and U.S. Department of Housing and Urban Development
-	TotalPayrolls                  = "PAYEMS"        // U.S. Bureau of Labor Statistics
-	TotalVehicleSales              = "TOTALSA"       // U.S. Bureau of Economic Analysis
-	RetailMoneyFunds               = "WRMFSL"        // Board of Governors of the Federal Reserve System
-	UnemploymentRate               = "UNRATE"        // U.S. Bureau of Labor Statistics
-	USRecessionProbabilities       = "RECPROUSM156N" // U.S. Bureau of Economic Analysis
-)

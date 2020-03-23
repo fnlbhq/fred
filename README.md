@@ -13,6 +13,6 @@ q := series.Updates().Limit("1000").Offset("2000")
 // Execute the request
 r, _ := q.Get()
 
-// Convert the result to JSON and print the result
+// Convert the fred to JSON and print the fred
 fmt.Println(r.PrettyJSON())
 ``` 
