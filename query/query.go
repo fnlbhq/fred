@@ -1,4 +1,4 @@
-package fred
+package query
 
 import (
 	"encoding/json"
@@ -6,46 +6,138 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
 
 	"github.com/fnlbhq/fred/argument"
 )
-
-const fredUrl = "https://api.stlouisfed.org"
-const apiKeyEnvVar = "FRED_API_KEY"
-
-func NewQuery(action string) (*Query, error) {
-
-	u, err := url.Parse(fmt.Sprintf("%s/%s", fredUrl, action))
-
-	if err != nil {
-		return nil, err
-	}
-
-	apiKey := os.Getenv(apiKeyEnvVar)
-
-	query := u.Query()
-	query.Add("file_type", "json")
-
-	if apiKey != "" {
-		query.Add(argument.APIKey, apiKey)
-	}
-
-	u.RawQuery = query.Encode()
-
-	return &Query{URL: *u}, nil
-}
 
 type Query struct {
 	url.URL
 }
 
-func (q *Query) With(argument, value string) *Query {
+func (q *Query) AddParameter(argument, value string) {
 	query := q.URL.Query()
-	query.Add(argument, fmt.Sprintf("%v", value))
+	query.Set(argument, fmt.Sprintf("%v", value))
 	q.URL.RawQuery = query.Encode()
-	copy, _ := url.Parse(q.URL.String())
-	return &Query{URL: *copy}
+}
+
+func (q *Query) APIKey(value string) {
+	q.AddParameter(argument.APIKey, value)
+}
+
+func (q *Query) CategoryID(value string) {
+	q.AddParameter(argument.CategoryId, value)
+}
+
+func (q *Query) RealtimeStart(value string) {
+	q.AddParameter(argument.RealTimeStart, value)
+}
+
+func (q *Query) RealtimeEnd(value string) {
+	q.AddParameter(argument.RealTimeEnd, value)
+}
+
+func (q *Query) Limit(value string) {
+	q.AddParameter(argument.Limit, value)
+}
+
+func (q *Query) Offset(value string) {
+	q.AddParameter(argument.Offset, value)
+}
+
+func (q *Query) OrderBy(value string) {
+	q.AddParameter(argument.OrderBy, value)
+}
+
+func (q *Query) SortOrder(value string) {
+	q.AddParameter(argument.SortOrder, value)
+}
+
+func (q *Query) FilterVariable(value string) {
+	q.AddParameter(argument.FilterVariable, value)
+}
+
+func (q *Query) FilterValue(value string) {
+	q.AddParameter(argument.FilterValue, value)
+}
+
+func (q *Query) TagNames(value string) {
+	q.AddParameter(argument.TagNames, value)
+}
+
+func (q *Query) ExcludeTagNames(value string) {
+	q.AddParameter(argument.ExcludeTagNames, value)
+}
+
+func (q *Query) TagGroupID(value string) {
+	q.AddParameter(argument.TagGroupId, value)
+}
+
+func (q *Query) SearchText(value string) {
+	q.AddParameter(argument.SearchText, value)
+}
+
+func (q *Query) IncludeReleaseDatesWithNoData(value string) {
+	q.AddParameter(argument.IncludeReleaseDatesWithNoData, value)
+}
+
+func (q *Query) ReleaseID(value string) {
+	q.AddParameter(argument.ReleaseId, value)
+}
+
+func (q *Query) ElementID(value string) {
+	q.AddParameter(argument.ElementId, value)
+}
+
+func (q *Query) IncludeObservationValues(value string) {
+	q.AddParameter(argument.IncludeObservationValues, value)
+}
+
+func (q *Query) ObservationDate(value string) {
+	q.AddParameter(argument.ObservationDate, value)
+}
+
+func (q *Query) SeriesID(value string) {
+	q.AddParameter(argument.SeriesId, value)
+}
+
+func (q *Query) ObservationStart(value string) {
+	q.AddParameter(argument.ObservationStart, value)
+}
+
+func (q *Query) ObservationEnd(value string) {
+	q.AddParameter(argument.ObservationEnd, value)
+}
+
+func (q *Query) Units(value string) {
+	q.AddParameter(argument.Units, value)
+}
+
+func (q *Query) Frequency(value string) {
+	q.AddParameter(argument.Frequency, value)
+}
+
+func (q *Query) AggregationMethod(value string) {
+	q.AddParameter(argument.AggregationMethod, value)
+}
+
+func (q *Query) OutputType(value string) {
+	q.AddParameter(argument.OutputType, value)
+}
+
+func (q *Query) VintageDates(value string) {
+	q.AddParameter(argument.VintageDates, value)
+}
+
+func (q *Query) TagSearchText(value string) {
+	q.AddParameter(argument.TagSearchText, value)
+}
+
+func (q *Query) SeriesSearchText(value string) {
+	q.AddParameter(argument.SeriesSearchText, value)
+}
+
+func (q *Query) SourceID(value string) {
+	q.AddParameter(argument.SourceId, value)
 }
 
 func (q *Query) String() string {
