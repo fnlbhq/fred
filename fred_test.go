@@ -17,6 +17,7 @@ func init() {
 	// os.Setenv("FRED_API_KEY", "")
 }
 
+// This 'test' collects all updates and saves to a .csv file
 func TestUpdatesToCSV(t *testing.T) {
 
 	limit := 1000
