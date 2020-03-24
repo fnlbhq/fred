@@ -17,7 +17,7 @@ func init() {
 	// os.Setenv("FRED_API_KEY", "")
 }
 
-func TestUpdate(t *testing.T) {
+func TestUpdatesToCSV(t *testing.T) {
 
 	limit := 1000
 	offset := 0

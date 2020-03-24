@@ -1,0 +1,2 @@
+# github.com/gocarina/gocsv v0.0.0-20200319093647-ffb15402e9f4
+github.com/gocarina/gocsv
