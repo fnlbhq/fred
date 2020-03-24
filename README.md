@@ -1,5 +1,5 @@
 ## FRED  
-###$ A client for the St. Louis Fed's FRED [Economic Data API](https://research.stlouisfed.org/docs/api/fred/), written in [Go](https://golang.org).  
+#### A client for the St. Louis Fed's FRED [Economic Data API](https://research.stlouisfed.org/docs/api/fred/), written in [Go](https://golang.org).  
 FRED aims to provide a simple, developer-friendly interface that largely mirrors the patterns established by the  [API](https://research.stlouisfed.org/docs/api/fred/).
 ### Example
 ```go
