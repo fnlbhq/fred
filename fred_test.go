@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/gocarina/gocsv"
+	"github.com/fnlbhq/fred/result"
 
-	"github.com/fnlbhq/fred/fred"
+	"github.com/gocarina/gocsv"
 
 	"github.com/fnlbhq/fred/series"
 )
@@ -23,12 +23,11 @@ func TestUpdatesToCSV(t *testing.T) {
 	limit := 1000
 	offset := 0
 	var count int
-	var accum []fred.Series
+	var accum []result.Series
 	q, _ := series.Updates().Limit(strconv.Itoa(limit)).Offset(strconv.Itoa(offset)).Get()
 	count = q.Count
 
 	fmt.Printf("There will be %d entries\n", count)
-
 	accum = append(accum, q.Series...)
 
 	for offset+limit < count {

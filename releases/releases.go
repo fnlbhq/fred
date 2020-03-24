@@ -1,6 +1,8 @@
 package releases
 
-import "github.com/fnlbhq/fred/query"
+import (
+	"github.com/fnlbhq/fred/query"
+)
 
 const (
 	releases         = "fred/releases"             // Get all releases of economic data.
@@ -14,38 +16,38 @@ const (
 	releaseTables    = "fred/release/tables"       // Get the release tables for a given release.
 )
 
-func Releases() *query.Query {
+func Releases() query.Query {
 	return query.NewQuery(releases)
 }
 
-func AllReleasesDates() *query.Query {
+func AllReleasesDates() query.Query {
 	return query.NewQuery(allReleasesDates)
 }
 
-func Release() *query.Query {
+func Release() query.Query {
 	return query.NewQuery(release)
 }
 
-func ReleaseDates() *query.Query {
+func ReleaseDates() query.Query {
 	return query.NewQuery(releaseDates)
 }
 
-func ReleaseSeries() *query.Query {
+func ReleaseSeries() query.Query {
 	return query.NewQuery(releaseSeries)
 }
 
-func ReleaseSources() *query.Query {
+func ReleaseSources() query.Query {
 	return query.NewQuery(releaseSources)
 }
 
-func ReleaseTags() *query.Query {
+func ReleaseTags() query.Query {
 	return query.NewQuery(releaseTags)
 }
 
-func RelatedTags() *query.Query {
+func RelatedTags() query.Query {
 	return query.NewQuery(relatedTags)
 }
 
-func ReleaseTables() *query.Query {
+func ReleaseTables() query.Query {
 	return query.NewQuery(releaseTables)
 }

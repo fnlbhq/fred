@@ -1,4 +1,4 @@
-package fred
+package result
 
 import "encoding/json"
 

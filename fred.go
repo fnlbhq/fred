@@ -1,5 +1,15 @@
 package fred
 
+import (
+	"github.com/fnlbhq/fred/categories"
+	"github.com/fnlbhq/fred/query"
+	"github.com/fnlbhq/fred/releases"
+	"github.com/fnlbhq/fred/result"
+	"github.com/fnlbhq/fred/series"
+	"github.com/fnlbhq/fred/sources"
+	"github.com/fnlbhq/fred/tags"
+)
+
 // Common series
 const (
 	CDRatesNonJumbo                = "MMNRNJ"          // FDIC via FRED
@@ -21,3 +31,47 @@ const (
 	UnemploymentRate               = "UNRATE"        // U.S. Bureau of Labor Statistics
 	USRecessionProbabilities       = "RECPROUSM156N" // U.S. Bureau of Economic Analysis
 )
+
+type Query = query.Query
+type Result = result.Result
+
+// Categories
+var Category = categories.Category
+var CategoryChildren = categories.Children
+var CategoryRelated = categories.Related
+var CategorySeries = categories.Series
+var CategoryTags = categories.Tags
+var CategoryRelatedTags = categories.RelatedTags
+
+// Releases
+var Releases = releases.Releases
+var ReleasesAllReleaseDates = releases.AllReleasesDates
+var ReleasesRelease = releases.Release
+var ReleasesReleaseDates = releases.ReleaseDates
+var ReleasesReleaseSeries = releases.ReleaseSeries
+var ReleasesReleaseSources = releases.ReleaseSources
+var ReleasesReleaseTags = releases.ReleaseTags
+var ReleasesRelatedTags = releases.RelatedTags
+var ReleasesReleaseTables = releases.ReleaseTables
+
+// Series
+var Series = series.Series
+var SeriesCategories = series.Categories
+var SeriesObservations = series.Observations
+var SeriesRelease = series.Release
+var SeriesSearch = series.Search
+var SeriesSearchTags = series.SearchTags
+var SeriesSearchRelatedTags = series.SearchRelatedTags
+var SeriesTags = series.Tags
+var SeriesUpdates = series.Updates
+var SeriesVintageDates = series.VintageDates
+
+// Sources
+var Sources = sources.Sources
+var SourcesSource = sources.Source
+var SourcesReleases = sources.Releases
+
+// Tags
+var Tags = tags.Tags
+var TagsRelatedTags = tags.RelatedTags
+var TagsSeries = tags.Series

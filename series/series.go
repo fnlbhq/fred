@@ -17,42 +17,42 @@ const (
 	vintageDates      = "fred/series/vintagedates"        // Get the dates in history when a series' data values were revised or new data values were released.
 )
 
-func Series() *query.Query {
+func Series() query.Query {
 	return query.NewQuery(series)
 }
 
-func Categories() *query.Query {
+func Categories() query.Query {
 	return query.NewQuery(categories)
 }
 
-func Observations() *query.Query {
+func Observations() query.Query {
 	return query.NewQuery(observations)
 }
 
-func Release() *query.Query {
+func Release() query.Query {
 	return query.NewQuery(release)
 }
 
-func Search() *query.Query {
+func Search() query.Query {
 	return query.NewQuery(search)
 }
 
-func SearchTags() *query.Query {
+func SearchTags() query.Query {
 	return query.NewQuery(searchTags)
 }
 
-func SearchRelatedTags() *query.Query {
+func SearchRelatedTags() query.Query {
 	return query.NewQuery(searchRelatedTags)
 }
 
-func Tags() *query.Query {
+func Tags() query.Query {
 	return query.NewQuery(tags)
 }
 
-func Updates() *query.Query {
+func Updates() query.Query {
 	return query.NewQuery(updates)
 }
 
-func VintageDates() *query.Query {
+func VintageDates() query.Query {
 	return query.NewQuery(vintageDates)
 }

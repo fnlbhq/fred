@@ -1,6 +1,8 @@
 package categories
 
-import "github.com/fnlbhq/fred/query"
+import (
+	"github.com/fnlbhq/fred/query"
+)
 
 const (
 	category    = "fred/category"              // Get a category.
@@ -11,26 +13,26 @@ const (
 	relatedTags = "fred/category/related_tags" // Get the related tags for a category.
 )
 
-func Category() *query.Query {
+func Category() query.Query {
 	return query.NewQuery(category)
 }
 
-func Children() *query.Query {
+func Children() query.Query {
 	return query.NewQuery(children)
 }
 
-func Related() *query.Query {
+func Related() query.Query {
 	return query.NewQuery(related)
 }
 
-func Series() *query.Query {
+func Series() query.Query {
 	return query.NewQuery(series)
 }
 
-func Tags() *query.Query {
+func Tags() query.Query {
 	return query.NewQuery(tags)
 }
 
-func RelatedTags() *query.Query {
+func RelatedTags() query.Query {
 	return query.NewQuery(relatedTags)
 }

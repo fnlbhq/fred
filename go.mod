@@ -6,5 +6,6 @@ require (
 	github.com/gocarina/gocsv v0.0.0-20200319093647-ffb15402e9f4
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/stretchr/testify v1.5.1 // indirect
+	golang.org/x/mobile v0.0.0-20200222142934-3c8601c510d0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
