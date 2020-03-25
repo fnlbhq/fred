@@ -8,9 +8,8 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/fnlbhq/fred/fred"
-
 	"github.com/fnlbhq/fred/query/argument"
+	"github.com/fnlbhq/fred/result"
 )
 
 const fredUrl = "https://api.stlouisfed.org"
@@ -169,7 +168,7 @@ func (q *Query) String() string {
 	return q.URL.String()
 }
 
-func (q *Query) Get() (*fred.Result, error) {
+func (q *Query) Get() (*result.Result, error) {
 	resp, err := http.Get(q.URL.String())
 
 	if err != nil {
@@ -184,7 +183,7 @@ func (q *Query) Get() (*fred.Result, error) {
 		return nil, err
 	}
 
-	var result fred.Result
+	var result result.Result
 
 	err = json.Unmarshal(body, &result)
 

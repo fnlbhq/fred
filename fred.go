@@ -1,5 +1,11 @@
 package fred
 
+import (
+	"fmt"
+
+	"github.com/fnlbhq/fred/series"
+)
+
 // Common series
 const (
 	CDRatesNonJumbo                = "MMNRNJ"          // FDIC via FRED
@@ -21,3 +27,11 @@ const (
 	UnemploymentRate               = "UNRATE"        // U.S. Bureau of Labor Statistics
 	USRecessionProbabilities       = "RECPROUSM156N" // U.S. Bureau of Economic Analysis
 )
+
+func GetUpdates(offset, limit string) string {
+	r := series.Updates().Offset(offset).Limit(limit)
+	fmt.Println(r.String())
+	rr, _ := r.Get()
+	j, _ := rr.JSON()
+	return j
+}
