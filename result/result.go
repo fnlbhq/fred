@@ -56,6 +56,7 @@ type Series struct {
 	SeasonalAdjustmentShort string `json:"seasonal_adjustment_short" csv:"seasonal_adjustment_short"`
 	LastUpdated             string `json:"last_updated" csv:"last_updated"`
 	Popularity              int    `csv:"popularity"`
+	Notes                   string `json:"notes"`
 }
 
 type Observation struct {
