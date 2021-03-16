@@ -45,38 +45,38 @@ type Series struct {
 	ID                      string `json:"id" csv:"id"`
 	RealtimeStart           string `json:"realtime_start" csv:"realtime_start"`
 	RealtimeEnd             string `json:"realtime_end" csv:"realtime_end"`
-	Title                   string `csv:"title"`
+	Title                   string `json:"title" csv:"title"`
 	ObservationStart        string `json:"observation_start" csv:"observation_start"`
 	ObservationEnd          string `json:"observation_end" csv:"observation_end"`
-	Frequency               string `csv:"frequency"`
+	Frequency               string `json:"frequency" csv:"frequency"`
 	FrequencyShort          string `json:"frequency_short" csv:"frequency_short"`
-	Units                   string `csv:"units"`
+	Units                   string `json:"units" csv:"units"`
 	UnitsShort              string `json:"units_short" csv:"units_short"`
 	SeasonalAdjustment      string `json:"seasonal_adjustment" csv:"seasonal_adjustment"`
 	SeasonalAdjustmentShort string `json:"seasonal_adjustment_short" csv:"seasonal_adjustment_short"`
 	LastUpdated             string `json:"last_updated" csv:"last_updated"`
-	Popularity              int    `csv:"popularity"`
+	Popularity              int    `json:"popularity" csv:"popularity"`
 	Notes                   string `json:"notes"`
 }
 
 type Observation struct {
-	Date          string
+	Date          string `json:"date"`
 	RealtimeStart string `json:"realtime_start"`
 	RealtimeEnd   string `json:"realtime_end"`
-	Value         string
+	Value         string `json:"value"`
 }
 
 type Release struct {
 	ID            int
 	RealtimeStart string `json:"realtime_start"`
 	RealtimeEnd   string `json:"realtime_end"`
-	Name          string
+	Name          string`json:"name"`
 	PressRelease  string `json:"press_release"`
-	Link          string
+	Link          string `json:"link"`
 }
 
 type Category struct {
-	ID       int
-	Name     string
-	ParentID int
+	ID       int `json:"id"`
+	Name     string `json:"name"`
+	ParentID int `json:"parent_id"`
 }
