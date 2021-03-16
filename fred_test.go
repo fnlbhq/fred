@@ -2,20 +2,13 @@ package fred
 
 import (
 	"fmt"
-	"os"
-	"strconv"
 	"testing"
-
-	"github.com/fnlbhq/fred/result"
-
-	"github.com/fnlbhq/fred/series"
-	"github.com/gocarina/gocsv"
 )
 
 func init() {
 	// os.Setenv("FRED_API_KEY", "")
 }
-
+/*
 // This 'test' collects all updates and saves to a .csv file
 func TestUpdatesToCSV(t *testing.T) {
 	limit := 1000
@@ -55,4 +48,10 @@ func TestUpdatesToCSV(t *testing.T) {
 	}
 
 	fmt.Println(len(accum))
+}
+*/
+
+func TestGetSeriesObservations(t *testing.T) {
+	seriesObservations, _ := GetSeriesObservations(UnemploymentRate)
+	fmt.Println(seriesObservations)
 }

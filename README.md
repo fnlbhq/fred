@@ -15,4 +15,11 @@ r, _ := q.Get()
 
 // Convert the fred to JSON and print the fred
 fmt.Println(r.PrettyJSON())
+
+
+// Fetch the US unemployment rate via the series observation method
+result, err := GetSeriesObservations("UNRATE")
+
+// Build a query to fetch the US unemployment rate
+result, err := series.Observations().AddParameter(argument.SeriesId, "UNRATE").Get()
 ``` 

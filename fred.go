@@ -2,6 +2,8 @@ package fred
 
 import (
 	"fmt"
+	"github.com/fnlbhq/fred/query/argument"
+	"github.com/fnlbhq/fred/result"
 
 	"github.com/fnlbhq/fred/series"
 )
@@ -34,4 +36,17 @@ func GetUpdates(offset, limit string) string {
 	rr, _ := r.Get()
 	j, _ := rr.JSON()
 	return j
+}
+
+// Assumes that the Fred API is stored in an environment variable: FRED_API_KEY
+func GetSeriesObservations(seriesId string) (*result.Result, error) {
+	result, err := series.
+		Observations().
+		AddParameter(argument.SeriesId, seriesId).
+		Get()
+
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
 }
