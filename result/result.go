@@ -3,18 +3,18 @@ package result
 import "encoding/json"
 
 type Result struct {
-	Start            string `json:"realtime_start"`
-	End              string `json:"realtime_end"`
-	ObservationStart string `json:"observation_start"`
-	ObservationEnd   string `json:"observation_end"`
-	Units            string
-	OutputType       int    `json:"output_type"`
-	FileType         string `json:"file_type"`
-	OrderBy          string `json:"order_by"`
-	SortOrder        string `json:"sort_order"`
-	Count            int
-	Offset           int
-	Limit            int
+	Start            string        `json:"realtime_start"`
+	End              string        `json:"realtime_end"`
+	ObservationStart string        `json:"observation_start"`
+	ObservationEnd   string        `json:"observation_end"`
+	Units            string        `json:"units"`
+	OutputType       int           `json:"output_type"`
+	FileType         string        `json:"file_type"`
+	OrderBy          string        `json:"order_by"`
+	SortOrder        string        `json:"sort_order"`
+	Count            int           `json:"count"`
+	Offset           int           `json:"offset"`
+	Limit            int           `json:"limit"`
 	Series           []Series      `json:"seriess,omitempty"`
 	Observations     []Observation `json:",omitempty"`
 	Releases         []Release     `json:",omitempty"`
@@ -70,13 +70,13 @@ type Release struct {
 	ID            int
 	RealtimeStart string `json:"realtime_start"`
 	RealtimeEnd   string `json:"realtime_end"`
-	Name          string`json:"name"`
+	Name          string `json:"name"`
 	PressRelease  string `json:"press_release"`
 	Link          string `json:"link"`
 }
 
 type Category struct {
-	ID       int `json:"id"`
+	ID       int    `json:"id"`
 	Name     string `json:"name"`
-	ParentID int `json:"parent_id"`
+	ParentID int    `json:"parent_id"`
 }

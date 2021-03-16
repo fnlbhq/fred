@@ -8,6 +8,7 @@ import (
 func init() {
 	// os.Setenv("FRED_API_KEY", "")
 }
+
 /*
 // This 'test' collects all updates and saves to a .csv file
 func TestUpdatesToCSV(t *testing.T) {
@@ -52,6 +53,6 @@ func TestUpdatesToCSV(t *testing.T) {
 */
 
 func TestGetSeriesObservations(t *testing.T) {
-	seriesObservations, _ := GetSeriesObservations(UnemploymentRate)
+	seriesObservations, _ := GetSeriesObservations("UNRATE")
 	fmt.Println(seriesObservations)
 }
