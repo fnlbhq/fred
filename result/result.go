@@ -42,36 +42,36 @@ func (r *Result) PrettyJSON() (string, error) {
 }
 
 type Series struct {
-	ID                      string `csv:"id"`
-	RealtimeStart           string `csv:"realtime_start"`
-	RealtimeEnd             string `csv:"realtime_end"`
+	ID                      string `json:"id" csv:"id"`
+	RealtimeStart           string `json:"realtime_start" csv:"realtime_start"`
+	RealtimeEnd             string `json:"realtime_end" csv:"realtime_end"`
 	Title                   string `csv:"title"`
-	ObservationStart        string `csv:"observation_start"`
-	ObservationEnd          string `csv:"observation_end"`
+	ObservationStart        string `json:"observation_start" csv:"observation_start"`
+	ObservationEnd          string `json:"observation_end" csv:"observation_end"`
 	Frequency               string `csv:"frequency"`
-	FrequencyShort          string `csv:"frequency_short"`
+	FrequencyShort          string `json:"frequency_short" csv:"frequency_short"`
 	Units                   string `csv:"units"`
-	UnitsShort              string `csv:"units_short"`
-	SeasonalAdjustment      string `csv:"seasonal_adjustment"`
-	SeasonalAdjustmentShort string `csv:"seasonal_adjustment_short"`
-	LastUpdated             string `csv:"last_updated"`
+	UnitsShort              string `json:"units_short" csv:"units_short"`
+	SeasonalAdjustment      string `json:"seasonal_adjustment" csv:"seasonal_adjustment"`
+	SeasonalAdjustmentShort string `json:"seasonal_adjustment_short" csv:"seasonal_adjustment_short"`
+	LastUpdated             string `json:"last_updated" csv:"last_updated"`
 	Popularity              int    `csv:"popularity"`
-	Notes                   string
+	Notes                   string `json:"notes"`
 }
 
 type Observation struct {
 	Date          string
-	RealtimeStart string
-	RealtimeEnd   string
+	RealtimeStart string `json:"realtime_start"`
+	RealtimeEnd   string `json:"realtime_end"`
 	Value         string
 }
 
 type Release struct {
 	ID            int
-	RealtimeStart string
-	RealtimeEnd   string
+	RealtimeStart string `json:"realtime_start"`
+	RealtimeEnd   string `json:"realtime_end"`
 	Name          string
-	PressRelease  string
+	PressRelease  string `json:"press_release"`
 	Link          string
 }
 
