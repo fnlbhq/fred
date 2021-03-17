@@ -16,9 +16,9 @@ type Result struct {
 	Offset           int           `json:"offset"`
 	Limit            int           `json:"limit"`
 	Series           []Series      `json:"seriess,omitempty"`
-	Observations     []Observation `json:",omitempty"`
-	Releases         []Release     `json:",omitempty"`
-	Categories       []Category    `json:",omitempty"`
+	Observations     []Observation `json:"observations,omitempty"`
+	Releases         []Release     `json:"releases,omitempty"`
+	Categories       []Category    `json:"categories,omitempty"`
 }
 
 func (r *Result) JSON() (string, error) {
