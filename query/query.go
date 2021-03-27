@@ -3,13 +3,14 @@ package query
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/fnlbhq/fred/result/result"
+	"github.com/fnlbhq/fred/result/snakecase"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 
 	"github.com/fnlbhq/fred/query/argument"
-	"github.com/fnlbhq/fred/result"
 )
 
 const fredUrl = "https://api.stlouisfed.org"
@@ -183,7 +184,7 @@ func (q *Query) Get() (*result.Result, error) {
 		return nil, err
 	}
 
-	var result result.Result
+	var result snakecase.Result
 
 	err = json.Unmarshal(body, &result)
 
@@ -191,5 +192,7 @@ func (q *Query) Get() (*result.Result, error) {
 		return nil, err
 	}
 
-	return &result, nil
+	final := result.CamelCase()
+
+	return &final, nil
 }

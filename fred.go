@@ -3,8 +3,7 @@ package fred
 import (
 	"fmt"
 	"github.com/fnlbhq/fred/query/argument"
-	"github.com/fnlbhq/fred/result"
-
+	"github.com/fnlbhq/fred/result/result"
 	"github.com/fnlbhq/fred/series"
 )
 
@@ -18,7 +17,7 @@ const (
 	FederalFundsRate               = "FEDFUNDS"        // Board of Governors of the Federal Reserve System
 	InitialClaimsFourWeekMovingAvg = "IC4WSA"          // US Employment & Training Admin via FRED
 	IndustrialProductionIndex      = "INDPRO"          // Board of Governors of the Federal Reserve System
-	InstitutionalMoneyFunds        = "WIMFSL"
+	// InstitutionalMoneyFunds        = "WIMFSL" (discontinued)
 	MortgageRates30USFixedAverage  = "MORTGAGE30US"  // Freddie Mac via Board of Governors of the Federal Reserve System
 	MortgageRates15USFixedAverage  = "MORTGAGE15US"  // Freddie Mac via Board of Governors of the Federal Reserve System
 	MortgageRates5USFixedAverage   = "MORTGAGE5US"   // Freddie Mac via Board of Governors of the Federal Reserve System

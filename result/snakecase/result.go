@@ -1,6 +1,9 @@
-package result
+package snakecase
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"github.com/fnlbhq/fred/result/result"
+)
 
 type Result struct {
 	Start            string        `json:"realtime_start"`
@@ -19,6 +22,49 @@ type Result struct {
 	Observations     []Observation `json:"observations,omitempty"`
 	Releases         []Release     `json:"releases,omitempty"`
 	Categories       []Category    `json:"categories,omitempty"`
+}
+
+func (r *Result) CamelCase() result.Result {
+
+	var camelcaseSeries []result.Series
+	var camelcaseObservations []result.Observation
+	var camelcaseReleases []result.Release
+	var camelcaseCategories []result.Category
+
+	for _, s := range r.Series {
+		camelcaseSeries = append(camelcaseSeries, s.CamelCase())
+	}
+
+	for _, o := range r.Observations {
+		camelcaseObservations = append(camelcaseObservations, o.CamelCase())
+	}
+
+	for _, rs := range r.Releases {
+		camelcaseReleases = append(camelcaseReleases, rs.CamelCase())
+	}
+
+	for _, c := range r.Categories {
+		camelcaseCategories = append(camelcaseCategories, c.CamelCase())
+	}
+
+	return result.Result{
+		Start:            r.Start,
+		End:              r.End,
+		ObservationStart: r.ObservationStart,
+		ObservationEnd:   r.ObservationEnd,
+		Units:            r.Units,
+		OutputType:       r.OutputType,
+		FileType:         r.FileType,
+		OrderBy:          r.OrderBy,
+		SortOrder:        r.SortOrder,
+		Count:            r.Count,
+		Offset:           r.Offset,
+		Limit:            r.Limit,
+		Series:           camelcaseSeries,
+		Observations:     camelcaseObservations,
+		Releases:         camelcaseReleases,
+		Categories:       camelcaseCategories,
+	}
 }
 
 func (r *Result) JSON() (string, error) {
@@ -59,11 +105,40 @@ type Series struct {
 	Notes                   string `json:"notes"`
 }
 
+func (s *Series) CamelCase() result.Series {
+	return result.Series{
+		ID:                      s.ID,
+		RealtimeStart:           s.RealtimeStart,
+		RealtimeEnd:             s.RealtimeEnd,
+		Title:                   s.Title,
+		ObservationStart:        s.ObservationStart,
+		ObservationEnd:          s.ObservationEnd,
+		Frequency:               s.Frequency,
+		FrequencyShort:          s.FrequencyShort,
+		Units:                   s.Units,
+		UnitsShort:              s.UnitsShort,
+		SeasonalAdjustment:      s.SeasonalAdjustment,
+		SeasonalAdjustmentShort: s.SeasonalAdjustmentShort,
+		LastUpdated:             s.LastUpdated,
+		Popularity:              s.Popularity,
+		Notes:                   s.Notes,
+	}
+}
+
 type Observation struct {
 	Date          string `json:"date"`
 	RealtimeStart string `json:"realtime_start"`
 	RealtimeEnd   string `json:"realtime_end"`
 	Value         string `json:"value"`
+}
+
+func (o *Observation) CamelCase() result.Observation {
+	return result.Observation{
+		Date:          o.Date,
+		RealtimeStart: o.RealtimeStart,
+		RealtimeEnd:   o.RealtimeEnd,
+		Value:         o.Value,
+	}
 }
 
 type Release struct {
@@ -75,8 +150,27 @@ type Release struct {
 	Link          string `json:"link"`
 }
 
+func (r *Release) CamelCase() result.Release {
+	return result.Release{
+		ID: r.ID,
+		RealtimeStart: r.RealtimeStart,
+		RealtimeEnd: r.RealtimeEnd,
+		Name: r.Name,
+		PressRelease: r.PressRelease,
+		Link: r.Link,
+	}
+}
+
 type Category struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	ParentID int    `json:"parent_id"`
+}
+
+func (c *Category) CamelCase() result.Category {
+	return result.Category{
+		ID:       c.ID,
+		Name:     c.Name,
+		ParentID: c.ParentID,
+	}
 }
